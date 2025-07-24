@@ -2,13 +2,15 @@ import React, { useEffect } from 'react'
 import { MessageCircle, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Bot } from "@/types/Bot";
+import { Button } from './ui/button';
 
 interface SideBarProps {
     bots: Bot[];
     onBotSelect: (bot: Bot) => void;
+    onLogout?: () => void;
 }
 
-function SideBar({ bots,onBotSelect }: SideBarProps) {
+function SideBar({ bots,onBotSelect,onLogout }: SideBarProps) {
 
     return (
         <div className='h-full bg-background flex flex-col'>
@@ -17,6 +19,14 @@ function SideBar({ bots,onBotSelect }: SideBarProps) {
                 <div className="px-3 sm:px-4 py-3 sm:py-4">
                     <h1 className="text-lg sm:text-xl font-semibold text-foreground">Gappe</h1>
                     <p className="text-xs sm:text-sm text-muted-foreground">Choose a friend to chat with</p>
+                </div>
+                {/* Logout Buttonn */}
+                <div className="px-3 sm:px-4 py-2">
+                    <Button
+                        onClick={onLogout}
+                    >
+                        Logout
+                    </Button>
                 </div>
             </div>
 

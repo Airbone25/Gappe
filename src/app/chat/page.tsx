@@ -45,7 +45,7 @@ function Page() {
         <div className='h-screen bg-background'>
             <div className='hidden lg:flex h-full'>
                 <div className='w-1/3 min-w-[320px] max-w-[480px] border-r border-border'>
-                    <Sidebar bots={personas} onBotSelect={handleBotSelect} />
+                    <Sidebar bots={personas} onBotSelect={handleBotSelect} onLogout={handleSignOut}/>
                 </div>
 
                 <div className="flex-1">

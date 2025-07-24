@@ -2,12 +2,22 @@
 import { Button } from '@/components/ui/button'
 import { signIn, useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
+import { useEffect,useState } from 'react'
 
 function Page() {
 
   const {data: session,status} = useSession()
   const router = useRouter()
+
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    if (status === "loading") {
+      setLoading(true);
+    } else {
+      setLoading(false);
+    }
+  }, [status]);
 
   useEffect(() => {
     if (status === "authenticated") {
@@ -23,6 +33,10 @@ function Page() {
     signIn('google', { callbackUrl: '/' }).catch((error) => {
       console.error("Sign-in error:", error);
     });
+  }
+
+  if (loading) {
+    return <div className="flex items-center justify-center h-screen">Loading...</div>;
   }
 
   return (
